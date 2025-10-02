@@ -1,0 +1,51 @@
+@startuml
+' Título do Diagrama
+title Diagrama de Casos de Uso - Sistema de Gestão Escolar
+
+' Layout da esquerda para a direita
+left to right direction
+
+' Definição dos Atores
+actor Secretário
+actor Professor
+actor Aluno
+
+' Delimitação do Sistema com um retângulo
+rectangle "Sistema de Gestão Escolar" {
+  ' Casos de Uso do Secretário
+  (Cadastrar Aluno) as UC1
+  (Cadastrar Professor) as UC2
+  (Criar Disciplina) as UC3
+  (Matricular Aluno em Disciplina) as UC4
+
+  ' Caso de Uso do Professor
+  (Lançar Notas e Faltas) as UC5
+
+  ' Caso de Uso Compartilhado
+  (Consultar Alunos da Disciplina) as UC6
+  (Consultar Notas e Faltas) as UC7
+  (Consultar disciplinas) as UC8
+}
+
+' Relacionamentos do Secretário com os Casos de Uso
+Secretário --> UC1
+Secretário --> UC2
+Secretário --> UC3
+Secretário --> UC4
+
+' Relacionamento do Professor com os Casos de Uso
+Professor --> UC5
+
+' Ambos os atores podem realizar a consulta
+Secretário --> UC6
+Professor --> UC6
+
+' Todos os atores podem realizar a consulta
+Secretário --> UC7
+Professor --> UC7
+UC7 <-- Aluno
+
+' Ambos os atores podem realizar a consulta
+Professor --> UC8
+UC8 <-- Aluno
+@enduml
