@@ -1,0 +1,60 @@
+@startuml
+' Título do Diagrama
+title Diagrama de Classes - Sistema de Gestão Escolar
+
+' Configurações de aparência
+skinparam classAttributeIconSize 0
+skinparam roundcorner 10
+
+' --- Classes Abstratas ---
+abstract class Pessoa {
+  # nome: String
+  # cpf: String
+  # idade: int
+}
+
+abstract class Funcionario {
+  # id: String
+  # salario: double
+}
+
+' --- Classes Concretas ---
+class Aluno {
+  - matricula: String
+  --
+  + consultarNotas(): void
+  + consultarFaltas(): void
+  + consultarDisciplinas(): void
+}
+
+class Professor {
+  - especialidade: String
+  --
+  + lancarNotas(): void
+  + lancarFaltas(): void
+  + consultarNotas(): void
+  + consultarFaltas(): void
+  + consultarDisciplinas(): void
+  + consultarAlunos(): void
+}
+
+class Administrador {
+  --
+  + matricularAluno(): void
+  + criarDisciplina(): void
+  + cadastrarProfessor(): void
+  + cadastrarAluno(): void
+  + consultarAlunos(): void
+  + consultarProfessor(): void
+  + consultarNotas(): void
+  + consultarFaltas(): void
+}
+
+' --- Relações de Herança ---
+Pessoa <|-- Aluno
+Pessoa <|-- Funcionario
+
+Funcionario <|-- Professor
+Funcionario <|-- Administrador
+
+@enduml
