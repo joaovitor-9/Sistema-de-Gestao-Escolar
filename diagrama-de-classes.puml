@@ -1,51 +1,60 @@
 @startuml
 ' Título do Diagrama
-title Diagrama de Casos de Uso - Sistema de Gestão Escolar
+title Diagrama de Classes - Sistema de Gestão Escolar
 
-' Layout da esquerda para a direita
-left to right direction
+' Configurações de aparência
+skinparam classAttributeIconSize 0
+skinparam roundcorner 10
 
-' Definição dos Atores
-actor Administrador
-actor Professor
-actor Aluno
-
-' Delimitação do Sistema com um retângulo
-rectangle "Sistema de Gestão Escolar" {
-  ' Casos de Uso do Administrador
-  (Cadastrar Aluno) as UC1
-  (Cadastrar Professor) as UC2
-  (Criar Disciplina) as UC3
-  (Matricular Aluno em Disciplina) as UC4
-
-  ' Caso de Uso do Professor
-  (Lançar Notas e Faltas) as UC5
-
-  ' Caso de Uso Compartilhado
-  (Consultar Alunos da Disciplina) as UC6
-  (Consultar Notas e Faltas) as UC7
-  (Consultar disciplinas) as UC8
+' --- Classes Abstratas ---
+abstract class Pessoa {
+  # nome: String
+  # cpf: String
+  # idade: int
 }
 
-' Relacionamentos do Administrador com os Casos de Uso
-Administrador --> UC1
-Administrador --> UC2
-Administrador --> UC3
-Administrador --> UC4
+abstract class Funcionario {
+  # id: String
+  # salario: double
+}
 
-' Relacionamento do Professor com os Casos de Uso
-Professor --> UC5
+' --- Classes Concretas ---
+class Aluno {
+  - matricula: String
+  --
+  + consultarNotas(): void
+  + consultarFaltas(): void
+  + consultarDisciplinas(): void
+}
 
-' Ambos os atores podem realizar a consulta
-Administrador --> UC6
-Professor --> UC6
+class Professor {
+  - especialidade: String
+  --
+  + lancarNotas(): void
+  + lancarFaltas(): void
+  + consultarNotas(): void
+  + consultarFaltas(): void
+  + consultarDisciplinas(): void
+  + consultarAlunos(): void
+}
 
-' Todos os atores podem realizar a consulta
-Administrador --> UC7
-Professor --> UC7
-UC7 <-- Aluno
+class Administrador {
+  --
+  + matricularAluno(): void
+  + criarDisciplina(): void
+  + cadastrarProfessor(): void
+  + cadastrarAluno(): void
+  + consultarAlunos(): void
+  + consultarProfessor(): void
+  + consultarNotas(): void
+  + consultarFaltas(): void
+}
 
-' Ambos os atores podem realizar a consulta
-Professor --> UC8
-UC8 <-- Aluno
+' --- Relações de Herança ---
+Pessoa <|-- Aluno
+Pessoa <|-- Funcionario
+
+Funcionario <|-- Professor
+Funcionario <|-- Administrador
+
 @enduml
