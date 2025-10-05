@@ -6,13 +6,13 @@ title Diagrama de Casos de Uso - Sistema de Gestão Escolar
 left to right direction
 
 ' Definição dos Atores
-actor Secretário
+actor Administrador
 actor Professor
 actor Aluno
 
 ' Delimitação do Sistema com um retângulo
 rectangle "Sistema de Gestão Escolar" {
-  ' Casos de Uso do Secretário
+  ' Casos de Uso do Administrador
   (Cadastrar Aluno) as UC1
   (Cadastrar Professor) as UC2
   (Criar Disciplina) as UC3
@@ -27,21 +27,21 @@ rectangle "Sistema de Gestão Escolar" {
   (Consultar disciplinas) as UC8
 }
 
-' Relacionamentos do Secretário com os Casos de Uso
-Secretário --> UC1
-Secretário --> UC2
-Secretário --> UC3
-Secretário --> UC4
+' Relacionamentos do Administrador com os Casos de Uso
+Administrador --> UC1
+Administrador --> UC2
+Administrador --> UC3
+Administrador --> UC4
 
 ' Relacionamento do Professor com os Casos de Uso
 Professor --> UC5
 
 ' Ambos os atores podem realizar a consulta
-Secretário --> UC6
+Administrador --> UC6
 Professor --> UC6
 
 ' Todos os atores podem realizar a consulta
-Secretário --> UC7
+Administrador --> UC7
 Professor --> UC7
 UC7 <-- Aluno
 
