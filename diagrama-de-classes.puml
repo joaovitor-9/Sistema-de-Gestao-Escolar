@@ -16,31 +16,6 @@ abstract class Pessoa {
 abstract class Funcionario {
   # id: String
   # salario: double
-title Diagrama de Casos de Uso - Sistema de Gestão Escolar
-
-' Layout da esquerda para a direita
-left to right direction
-
-' Definição dos Atores
-actor Administrador
-actor Professor
-actor Aluno
-
-' Delimitação do Sistema com um retângulo
-rectangle "Sistema de Gestão Escolar" {
-  ' Casos de Uso do Administrador
-  (Cadastrar Aluno) as UC1
-  (Cadastrar Professor) as UC2
-  (Criar Disciplina) as UC3
-  (Matricular Aluno em Disciplina) as UC4
-
-  ' Caso de Uso do Professor
-  (Lançar Notas e Faltas) as UC5
-
-  ' Caso de Uso Compartilhado
-  (Consultar Alunos da Disciplina) as UC6
-  (Consultar Notas e Faltas) as UC7
-  (Consultar disciplinas) as UC8
 }
 
 ' --- Classes Concretas ---
@@ -62,11 +37,6 @@ class Professor {
   + consultarDisciplinas(): void
   + consultarAlunos(): void
 }
-' Relacionamentos do Administrador com os Casos de Uso
-Administrador --> UC1
-Administrador --> UC2
-Administrador --> UC3
-Administrador --> UC4
 
 class Administrador {
   --
@@ -79,24 +49,12 @@ class Administrador {
   + consultarNotas(): void
   + consultarFaltas(): void
 }
-' Relacionamento do Professor com os Casos de Uso
-Professor --> UC5
 
 ' --- Relações de Herança ---
 Pessoa <|-- Aluno
 Pessoa <|-- Funcionario
-' Ambos os atores podem realizar a consulta
-Administrador --> UC6
-Professor --> UC6
 
 Funcionario <|-- Professor
 Funcionario <|-- Administrador
-' Todos os atores podem realizar a consulta
-Administrador --> UC7
-Professor --> UC7
-UC7 <-- Aluno
 
-' Ambos os atores podem realizar a consulta
-Professor --> UC8
-UC8 <-- Aluno
 @enduml
