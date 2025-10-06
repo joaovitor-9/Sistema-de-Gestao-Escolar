@@ -4,20 +4,19 @@ public class Aluno extends Pessoa {
         super(nome, idade, cpf);
         this.matricula = matricula;
     }
-    public void consultarNotas(){
-        return ;
-    };
-    public void consultarFaltas(){
-        return ;
-    };
-    public void consultarDisciplinas(){
-        return ;
-    }
-    public String getMatricula() {
+    public String getMatricula() }
         return matricula;
     }
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-
+    public void consultarFaltas(){
+        return;
+    }
+    public void consultarDisciplinas(){
+        return;
+    }
+    public void consultarNotas() {
+        return;
+    }
 }
