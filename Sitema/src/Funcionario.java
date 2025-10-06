@@ -12,7 +12,6 @@ public abstract class Funcionario extends Pessoa {
     public double getSalario() {
         return salario;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -23,5 +22,4 @@ public abstract class Funcionario extends Pessoa {
             System.out.println("Salário inválido.");
         }
     }
-
 }
