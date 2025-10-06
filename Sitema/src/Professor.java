@@ -15,6 +15,6 @@ public class Professor extends Funcionario{
     public void lancarNotas(){
         return;
     }
-    public void consultarDeciplinas(){}
+    public void consultarDisciplinas(){}
     public void consultarAlunos(){}
 }
