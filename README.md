@@ -5,3 +5,6 @@ Um sistema de gestão escolar desenvolvido em Java, projetado para ser executado
 
 ### Protótipo de baixa fidelidade
 (https://www.figma.com/proto/nuA4NATVkdSw6haFZD6eRK/Sistema-de-Gest%C3%A3o-Escolar?node-id=1-6567&p=f&t=9wxn6QCflegQ12h3-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
+
+### Autores
+(Elias Manuel Fonseca Moreira e João Vitor Farias de Amorim)
