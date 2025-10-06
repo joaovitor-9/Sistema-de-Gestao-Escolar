@@ -10,8 +10,15 @@ public class Aluno extends Pessoa {
     public void consultarFaltas(){
         return ;
     };
-    public void consultarDeciplinas(){
+    public void consultarDisciplinas(){
         return ;
+    }
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
 }

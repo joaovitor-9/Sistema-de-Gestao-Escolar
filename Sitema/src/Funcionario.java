@@ -1,10 +1,28 @@
 public abstract class Funcionario extends Pessoa {
-    private String ID;
+    private String id;
     private double salario;
-   public Funcionario(String nome, String cpf,int idade,double salario, String ID) {
+   public Funcionario(String nome, String cpf,int idade,double salario, String id) {
         super(nome, idade,cpf);
-        this.ID = ID;
+        this.id = id;
         this.salario = salario;
+    }
+    public String getId() {
+        return id;
+    }
+    public double getSalario() {
+        return salario;
+    }
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    public void setSalario(double salario) {
+        if (salario >= 0) {
+            this.salario = salario;
+        } else {
+            System.out.println("Salário inválido.");
+        }
     }
 
 }
