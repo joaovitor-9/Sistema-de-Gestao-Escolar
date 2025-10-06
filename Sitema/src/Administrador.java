@@ -3,11 +3,11 @@ public class Administrador extends Funcionario {
         super(nome, cpf, idade, salario, ID);
     }
     public void matricularAluno(){}
-    public void criarDiciplina(){}
+    public void criarDisciplina(){}
     public void cadastrarAluno(){}
     public void cadastrarProfessor(){}
     public void consultarProfessor(){}
     public void consultarAlunos(){}
-    public void consultarNotoas(){}
+    public void consultarNotas(){}
     public void consultarFaltas(){}
 }
