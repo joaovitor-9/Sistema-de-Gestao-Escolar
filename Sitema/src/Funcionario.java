@@ -13,7 +13,6 @@ public abstract class Funcionario extends Pessoa {
         return salario;
     }
 
-
     public void setId(String id) {
         this.id = id;
     }

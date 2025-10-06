@@ -16,7 +16,6 @@ public abstract class Pessoa {
     public String getCpf() {
         return cpf;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
