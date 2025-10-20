@@ -1,6 +1,6 @@
 public class Aluno extends Pessoa {
     private String matricula;
-    public Aluno(String nome, String cpf,int idade ) {
+    public Aluno(String nome, String cpf,int idade) {
         super(nome, idade, cpf);
     }
     public void consultarNotas(){
@@ -18,4 +18,5 @@ public class Aluno extends Pessoa {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
+
 }
