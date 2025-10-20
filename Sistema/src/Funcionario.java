@@ -6,7 +6,11 @@ public abstract class Funcionario extends Pessoa {
         this.id = id;
         this.salario = salario;
     }
-    public String getId() {
+    public Funcionario(String nome, String cpf, int idade, double salario) {
+       super(nome, idade,cpf);
+        this.salario = salario;
+    }
+    public String getID() {
         return id;
     }
     public double getSalario() {

@@ -1,7 +1,7 @@
 public class Professor extends Funcionario{
     String especialidade;
-    public Professor(String nome, String cpf, int idade, double salario,String id, String especialidade){
-        super(nome,cpf,idade,salario,id);
+    public Professor(String nome, String cpf, int idade, double salario, String especialidade){
+        super(nome,cpf,idade,salario);
         this.especialidade = especialidade;
     }
     public String getEspecialidade() {
