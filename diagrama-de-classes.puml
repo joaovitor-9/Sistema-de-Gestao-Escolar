@@ -7,19 +7,19 @@ skinparam classAttributeIconSize 0
 skinparam roundcorner 10
 
 ' --- Classes Abstratas ---
-abstract class Pessoa {
+abstract class Model.Pessoa {
   # nome: String
   # cpf: String
   # idade: int
 }
 
-abstract class Funcionario {
+abstract class Model.Funcionario {
   # id: String
   # salario: double
 }
 
 ' --- Classes Concretas ---
-class Aluno {
+class Model.Aluno {
   - matricula: String
   --
   + consultarNotas(): void
@@ -27,7 +27,7 @@ class Aluno {
   + consultarDisciplinas(): void
 }
 
-class Professor {
+class Model.Professor {
   - especialidade: String
   --
   + lancarNotas(): void
@@ -38,7 +38,7 @@ class Professor {
   + consultarAlunos(): void
 }
 
-class Administrador {
+class Model.Administrador {
   --
   + matricularAluno(): void
   + criarDisciplina(): void
@@ -51,10 +51,10 @@ class Administrador {
 }
 
 ' --- Relações de Herança ---
-Pessoa <|-- Aluno
-Pessoa <|-- Funcionario
+Model.Pessoa <|-- Model.Aluno
+Model.Pessoa <|-- Model.Funcionario
 
-Funcionario <|-- Professor
-Funcionario <|-- Administrador
+Model.Funcionario <|-- Model.Professor
+Model.Funcionario <|-- Model.Administrador
 
 @enduml

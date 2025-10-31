@@ -1,3 +1,5 @@
+package Model;
+
 public abstract class Pessoa {
     private String nome;
     private int idade;
@@ -23,10 +25,14 @@ public abstract class Pessoa {
         if (idade > 0) {
             this.idade = idade;
         } else {
-            System.out.println("Idade inválida.");
+            throw new IllegalArgumentException("A idade deve ser um valor positivo.");
         }
     }
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+    @Override
+    public String toString() {
+        return "Nome: " + nome + ", CPF: " + cpf;
     }
 }

@@ -1,3 +1,5 @@
+package Model;
+
 public abstract class Funcionario extends Pessoa {
     private String id;
     private double salario;

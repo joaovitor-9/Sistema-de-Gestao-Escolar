@@ -6,19 +6,19 @@ title Diagrama de Casos de Uso - Sistema de Gestão Escolar
 left to right direction
 
 ' Definição dos Atores
-actor Administrador
-actor Professor
-actor Aluno
+actor Model.Administrador
+actor Model.Professor
+actor Model.Aluno
 
 ' Delimitação do Sistema com um retângulo
 rectangle "Sistema de Gestão Escolar" {
-  ' Casos de Uso do Administrador
-  (Cadastrar Aluno) as UC1
-  (Cadastrar Professor) as UC2
+  ' Casos de Uso do Model.Administrador
+  (Cadastrar Model.Aluno) as UC1
+  (Cadastrar Model.Professor) as UC2
   (Criar Disciplina) as UC3
-  (Matricular Aluno em Disciplina) as UC4
+  (Matricular Model.Aluno em Disciplina) as UC4
 
-  ' Caso de Uso do Professor
+  ' Caso de Uso do Model.Professor
   (Lançar Notas e Faltas) as UC5
 
   ' Caso de Uso Compartilhado
@@ -27,25 +27,25 @@ rectangle "Sistema de Gestão Escolar" {
   (Consultar disciplinas) as UC8
 }
 
-' Relacionamentos do Administrador com os Casos de Uso
-Administrador --> UC1
-Administrador --> UC2
-Administrador --> UC3
-Administrador --> UC4
+' Relacionamentos do Model.Administrador com os Casos de Uso
+Model.Administrador --> UC1
+Model.Administrador --> UC2
+Model.Administrador --> UC3
+Model.Administrador --> UC4
 
-' Relacionamento do Professor com os Casos de Uso
-Professor --> UC5
+' Relacionamento do Model.Professor com os Casos de Uso
+Model.Professor --> UC5
 
 ' Ambos os atores podem realizar a consulta
-Administrador --> UC6
-Professor --> UC6
+Model.Administrador --> UC6
+Model.Professor --> UC6
 
 ' Todos os atores podem realizar a consulta
-Administrador --> UC7
-Professor --> UC7
-UC7 <-- Aluno
+Model.Administrador --> UC7
+Model.Professor --> UC7
+UC7 <-- Model.Aluno
 
 ' Ambos os atores podem realizar a consulta
-Professor --> UC8
-UC8 <-- Aluno
+Model.Professor --> UC8
+UC8 <-- Model.Aluno
 @enduml
