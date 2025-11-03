@@ -1,9 +1,8 @@
 package Model;
 
 public class Disciplina {
-
     private final String nome;
-    private final String codigo; // Ex: "SI101
+    private final String codigo; // Ex: "SI101"
 
     public Disciplina(String nome, String codigo) {
         if (nome == null || nome.trim().isEmpty()) {
