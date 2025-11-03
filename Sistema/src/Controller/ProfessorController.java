@@ -5,13 +5,15 @@ import Model.Professor;
 import Model.Disciplina;
 import Model.ProfessorService;
 import View.SistemaView;
+import Model.Nota;
+import Model.Frequencia;
 import java.util.List;
 
 public class ProfessorController {
+
     private ProfessorService professorService;
     private SistemaView view;
     private String idProfessorLogado;
-
     public ProfessorController() {
         this.professorService = new ProfessorService();
         this.view = new SistemaView();
@@ -27,7 +29,6 @@ public class ProfessorController {
             this.setProfessorLogado(prof.getID());
             view.exibirMensagem("Login bem-sucedido! Bem-vindo(a), Prof. " + prof.getNome());
             return true;
-
         } catch (Exception e) {
             view.exibirErro(e.getMessage());
             view.aguardarEnter();
@@ -44,10 +45,8 @@ public class ProfessorController {
             String matriculaAluno = view.solicitarString("Matrícula do aluno: ");
             String codigoDisciplina = view.solicitarString("Código da disciplina: ");
             double nota = view.solicitarDouble("Nota (0 a 10): ");
-
             professorService.lancarNota(idProfessorLogado, matriculaAluno, codigoDisciplina, nota);
             view.exibirMensagem("SUCESSO: Nota lançada!");
-            
         } catch (Exception e) {
             view.exibirErro(e.getMessage());
         }
@@ -62,16 +61,13 @@ public class ProfessorController {
         try{
             String matriculaAluno = view.solicitarString("Matricula do aluno: ");
             String codigoDisciplina = view.solicitarString("Código da disciplina: ");
-
             professorService.lancarFalta(idProfessorLogado,matriculaAluno,codigoDisciplina);
             view.exibirMensagem("Falta cadastrada com sucesso!");
-            
         } catch (Exception e) {
             view.exibirErro(e.getMessage());
         }
         view.aguardarEnter();
     }
-
     public void iniciarConsultaAlunosPorDisciplina() {
         view.exibirMensagem("--- Alunos da Disciplina ---");
         try {
@@ -92,6 +88,38 @@ public class ProfessorController {
         try {
             List<Disciplina> disciplinas = professorService.consultarDisciplinasDoProfessor(idProfessorLogado);
             view.exibirLista(disciplinas);
+        } catch (Exception e) {
+            view.exibirErro(e.getMessage());
+        }
+        view.aguardarEnter();
+    }
+    public void iniciarConsultaNotasDaDisciplina() {
+        view.exibirMensagem("--- Consultar Notas da Disciplina ---");
+        if (idProfessorLogado == null) {
+            view.exibirErro("Nenhum professor logado.");
+            return;
+        }
+        try {
+            String codigo = view.solicitarString("Digite o código da disciplina: ");
+            List<Nota> notas = professorService.consultarNotasDaDisciplina(idProfessorLogado, codigo);
+            view.exibirMensagem("Notas da disciplina '" + codigo + "':");
+            view.exibirLista(notas);
+        } catch (Exception e) {
+            view.exibirErro(e.getMessage());
+        }
+        view.aguardarEnter();
+    }
+    public void iniciarConsultaFaltasDaDisciplina() {
+        view.exibirMensagem("--- Consultar Faltas da Disciplina ---");
+        if (idProfessorLogado == null) {
+            view.exibirErro("Nenhum professor logado.");
+            return;
+        }
+        try {
+            String codigo = view.solicitarString("Digite o código da disciplina: ");
+            List<Frequencia> faltas = professorService.consultarFaltasDaDisciplina(idProfessorLogado, codigo);
+            view.exibirMensagem("Faltas da disciplina '" + codigo + "':");
+            view.exibirLista(faltas);
         } catch (Exception e) {
             view.exibirErro(e.getMessage());
         }
