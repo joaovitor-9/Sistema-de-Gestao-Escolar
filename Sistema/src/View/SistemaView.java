@@ -12,9 +12,7 @@ public class SistemaView {
         System.out.println(mensagem);
     }
     public void exibirErro(String erro) {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println("!!! ERRO: " + erro);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("ERRO!!!: " + erro);
     }
     public void exibirLista(List<?> lista) {
         if (lista == null || lista.isEmpty()) {
@@ -25,7 +23,6 @@ public class SistemaView {
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(i + ": " + lista.get(i).toString());
         }
-        System.out.println("------------------------");
     }
     public void aguardarEnter() {
         System.out.println("\nPressione ENTER para continuar...");
