@@ -4,7 +4,6 @@ import java.util.List;
 
 public class AlunoService {
     private RepositorioSistema repositorio;
-    
     public AlunoService() {
         this.repositorio = RepositorioSistema.getInstancia();
     }
@@ -17,7 +16,6 @@ public class AlunoService {
     }
     public List<Nota> consultarNotas(String matriculaAluno) throws Exception {
         List<Nota> notas = repositorio.buscarNotasDoAluno(matriculaAluno);
-
         if (notas.isEmpty()) {
             throw new Exception("Nenhuma nota encontrada para este aluno.");
         }
@@ -25,7 +23,6 @@ public class AlunoService {
     }
     public List<Frequencia> consultarFaltas(String matriculaAluno) throws Exception {
         List<Frequencia> faltas = repositorio.buscarFaltasDoAluno(matriculaAluno);
-
         if (faltas.isEmpty()) {
             throw new Exception("Nenhuma falta registrada para este aluno.");
         }
@@ -33,7 +30,6 @@ public class AlunoService {
     }
     public List<Disciplina> consultarDisciplinasMatriculadas(String matriculaAluno) throws Exception {
         List<Disciplina> disciplinas = repositorio.buscarDisciplinasDoAluno(matriculaAluno);
-
         if (disciplinas.isEmpty()) {
             throw new Exception("Aluno não está matriculado em nenhuma disciplina.");
         }
