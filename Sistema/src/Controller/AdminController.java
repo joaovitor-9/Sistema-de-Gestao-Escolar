@@ -41,9 +41,9 @@ public class AdminController {
             String cpf = view.solicitarString("Digite o CPF: ");
             double salario = view.solicitarDouble("Digite o salário: ");
             String especialidade = view.solicitarString("Digite a especialidade: ");
-            adminService.cadastrarProfessor(nome, cpf, idade, salario, especialidade);
-            view.exibirMensagem("SUCESSO: Professor cadastrado!");
-
+            Professor novoProfessor = adminService.cadastrarProfessor(nome, cpf, idade, salario, especialidade); 
+            view.exibirMensagem("SUCESSO: Professor cadastrado!"); 
+            view.exibirMensagem("Nome: " + novoProfessor.getNome() + " | ID Gerado: " + novoProfessor.getID());
         } catch (Exception e) {
             view.exibirErro(e.getMessage());
         }
