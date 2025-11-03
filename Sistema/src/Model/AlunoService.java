@@ -1,18 +1,13 @@
 package Model;
-//import Model.Aluno;
+
 import java.util.List;
 
-/**
- * Contém a lógica de negócio para os casos de uso do Aluno.
- */
 public class AlunoService {
-
     private RepositorioSistema repositorio;
-
+    
     public AlunoService() {
         this.repositorio = RepositorioSistema.getInstancia();
     }
-
     public Aluno validarLogin(String matricula) throws Exception {
         Aluno aluno = repositorio.buscarAlunoPorMatricula(matricula);
         if (aluno == null) {
@@ -20,9 +15,6 @@ public class AlunoService {
         }
         return aluno;
     }
-    /**
-     * Caso de Uso: Consultar Notas
-     */
     public List<Nota> consultarNotas(String matriculaAluno) throws Exception {
         List<Nota> notas = repositorio.buscarNotasDoAluno(matriculaAluno);
 
@@ -31,10 +23,6 @@ public class AlunoService {
         }
         return notas;
     }
-
-    /**
-     * Caso de Uso: Consultar Faltas
-     */
     public List<Frequencia> consultarFaltas(String matriculaAluno) throws Exception {
         List<Frequencia> faltas = repositorio.buscarFaltasDoAluno(matriculaAluno);
 
@@ -43,10 +31,6 @@ public class AlunoService {
         }
         return faltas;
     }
-
-    /**
-     * Caso de Uso (Aluno): Consultar Disciplinas (específico do aluno)
-     */
     public List<Disciplina> consultarDisciplinasMatriculadas(String matriculaAluno) throws Exception {
         List<Disciplina> disciplinas = repositorio.buscarDisciplinasDoAluno(matriculaAluno);
 
