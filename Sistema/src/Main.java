@@ -4,10 +4,7 @@ import Controller.AlunoController;
 import Controller.ProfessorController;
 import View.SistemaView;
 
-// A classe Main inicializa o sistema e gerencia o menu principal/login.
 public class Main {
-
-    // Componentes do MVC
     private static SistemaView view = new SistemaView();
     private static AdminController adminController = new AdminController();
     private static ProfessorController professorController = new ProfessorController();
@@ -16,11 +13,10 @@ public class Main {
     public static void main(String[] args) {
         view.exibirMensagem("--- BEM-VINDO AO SISTEMA DE GESTÃO ESCOLAR ---");
 
-        loopPrincipal(); // Inicia o menu principal
+        loopPrincipal();
 
         view.exibirMensagem("--- OBRIGADO POR USAR O SISTEMA ---");
     }
-
     private static void loopPrincipal() {
         boolean executando = true;
         while (executando) {
@@ -31,7 +27,7 @@ public class Main {
             view.exibirMensagem("0. Sair do Sistema");
 
             int opcao = view.solicitarInt("Escolha uma opção: ");
-
+            
             switch (opcao) {
                 case 1:
                     menuAdmin();
@@ -50,9 +46,7 @@ public class Main {
             }
         }
     }
-
     private static void menuAdmin() {
-        // Em um sistema real, haveria um login de Admin
         view.exibirMensagem("\n--- Portal do Administrador ---");
         boolean executando = true;
         while (executando) {
@@ -92,7 +86,6 @@ public class Main {
             }
         }
     }
-
     private static void menuProfessor() {
         boolean loginSucesso = professorController.fazerLogin();
         if (!loginSucesso) {
@@ -130,7 +123,6 @@ public class Main {
             }
         }
     }
-
     private static void menuAluno() {
         boolean loginSucesso = alunoController.fazerLogin();
         if (!loginSucesso) {
