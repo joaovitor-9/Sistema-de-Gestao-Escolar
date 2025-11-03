@@ -31,32 +31,36 @@ public class RepositorioSistema {
         }
         return instanciaUnica;
     }
-    private void popularDadosDeTeste() {
+    private void popularDadosDeTeste() { // TEMPORARIO ATE A 3 ENTREGA
         try {
             String matAluno1 = "MAT" + proximoNumeroMatricula;
             proximoNumeroMatricula++;
             Aluno aluno1 = new Aluno("Alice Silva", 20, "111.111.111-11", matAluno1);
+
             String matAluno2 = "MAT" + proximoNumeroMatricula;
             proximoNumeroMatricula++;
             Aluno aluno2 = new Aluno("Bruno Costa", 22, "222.222.222-22", matAluno2);
+
             String idProf1 = "PROF" + proximoIDProfessor;
             proximoIDProfessor++;
             Professor prof1 = new Professor("Dr. Carlos", "333.333.333-33", 45, 5000.0, "Matematica");
             prof1.setId(idProf1);
+
             String idProf2 = "PROF" + proximoIDProfessor;
             proximoIDProfessor++;
             Professor prof2 = new Professor("Dra. Diana", "444.444.444-44", 38, 4500.0, "Portuges");
             prof2.setId(idProf2);
+
             Disciplina disc1 = new Disciplina("Matematica", "SI101");
             Disciplina disc2 = new Disciplina("Lingua Portugesa", "SI102");
-            
+
             adicionarAluno(aluno1);
             adicionarAluno(aluno2);
             adicionarProfessor(prof1);
             adicionarProfessor(prof2);
             adicionarDisciplina(disc1);
             adicionarDisciplina(disc2);
-            
+
             matricularAluno(aluno1, disc1);
             matricularAluno(aluno2, disc1);
             matricularAluno(aluno2, disc2);
@@ -113,7 +117,6 @@ public class RepositorioSistema {
     public void matricularAluno(Aluno aluno, Disciplina disciplina) {
         String matricula = aluno.getMatricula();
         String codigo = disciplina.getCodigo();
-        
         alunosPorDisciplina.putIfAbsent(codigo, new ArrayList<>());
         alunosPorDisciplina.get(codigo).add(matricula);
     }
@@ -199,5 +202,15 @@ public class RepositorioSistema {
         String novoID = "PROF" + proximoIDProfessor;
         proximoIDProfessor++;
         return novoID;
+    }
+    public List<Nota> buscarNotasPorDisciplina(String codigoDisciplina) {
+        return notas.stream()
+                .filter(nota -> nota.getDisciplina().getCodigo().equals(codigoDisciplina))
+                .collect(Collectors.toList());
+    }
+    public List<Frequencia> buscarFaltasPorDisciplina(String codigoDisciplina) {
+        return faltas.stream()
+                .filter(falta -> falta.getDisciplina().getCodigo().equals(codigoDisciplina))
+                .collect(Collectors.toList());
     }
 }
