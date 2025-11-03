@@ -25,7 +25,6 @@ public class AlunoController {
             this.setAlunoLogado(aluno.getMatricula());
             view.exibirMensagem("Login bem-sucedido! Bem-vindo(a), " + aluno.getNome());
             return true;
-
         } catch (Exception e) {
             view.exibirErro(e.getMessage());
             view.aguardarEnter();
@@ -43,7 +42,7 @@ public class AlunoController {
         }
         try {
             List<Nota> notas = alunoService.consultarNotas(matriculaAlunoLogado);
-            view.exibirLista(notas); 
+            view.exibirLista(notas);
         } catch (Exception e) {
             view.exibirErro(e.getMessage());
         }
