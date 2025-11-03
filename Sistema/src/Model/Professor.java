@@ -9,7 +9,6 @@ public class Professor extends Funcionario {
 
     public Professor(String nome, String cpf, int idade, double salario, String especialidade) {
         super(nome, cpf, idade, salario);
-
         if (especialidade == null || especialidade.trim().isEmpty()) {
             throw new IllegalArgumentException("A especialidade é obrigatória.");
         }
