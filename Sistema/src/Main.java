@@ -1,4 +1,3 @@
-
 import Controller.AdminController;
 import Controller.AlunoController;
 import Controller.ProfessorController;
@@ -9,12 +8,9 @@ public class Main {
     private static AdminController adminController = new AdminController();
     private static ProfessorController professorController = new ProfessorController();
     private static AlunoController alunoController = new AlunoController();
-
     public static void main(String[] args) {
         view.exibirMensagem("--- BEM-VINDO AO SISTEMA DE GESTÃO ESCOLAR ---");
-
         loopPrincipal();
-
         view.exibirMensagem("--- OBRIGADO POR USAR O SISTEMA ---");
     }
     private static void loopPrincipal() {
@@ -27,7 +23,7 @@ public class Main {
             view.exibirMensagem("0. Sair do Sistema");
 
             int opcao = view.solicitarInt("Escolha uma opção: ");
-            
+
             switch (opcao) {
                 case 1:
                     menuAdmin();
@@ -56,6 +52,9 @@ public class Main {
             view.exibirMensagem("4. Matricular Aluno em Disciplina");
             view.exibirMensagem("5. Consultar Todas as Disciplinas");
             view.exibirMensagem("6. Alocar Professor em Disciplina");
+            view.exibirMensagem("7. Consultar Alunos por Disciplina");
+            view.exibirMensagem("8. Consultar Notas de um Aluno");
+            view.exibirMensagem("9. Consultar Faltas de um Aluno");
             view.exibirMensagem("0. Voltar ao Menu Principal");
 
             int opcao = view.solicitarInt("Escolha uma opção: ");
@@ -78,6 +77,16 @@ public class Main {
                     break;
                 case 6:
                     adminController.iniciarAlocacaoProfessor();
+                    break;
+                case 7:
+                    adminController.iniciarConsultaAlunosPorDisciplina();
+                    break;
+                case 8:
+                    adminController.iniciarConsultaNotasAluno();
+                    break;
+                case 9:
+                    adminController.iniciarConsultaFaltasAluno();
+                    break;
                 case 0:
                     executando = false;
                     break;
@@ -97,6 +106,8 @@ public class Main {
             view.exibirMensagem("2. Lançar Falta");
             view.exibirMensagem("3. Consultar Alunos da Disciplina");
             view.exibirMensagem("4. Consultar Minhas Disciplinas");
+            view.exibirMensagem("5. Consultar Notas da Disciplina");
+            view.exibirMensagem("6. Consultar Faltas da Disciplina");
             view.exibirMensagem("0. Voltar (Logout)");
 
             int opcao = view.solicitarInt("Escolha uma opção: ");
@@ -113,6 +124,12 @@ public class Main {
                     break;
                 case 4:
                     professorController.iniciarConsultaDisciplinasDoProfessor();
+                    break;
+                case 5:
+                    professorController.iniciarConsultaNotasDaDisciplina();
+                    break;
+                case 6:
+                    professorController.iniciarConsultaFaltasDaDisciplina();
                     break;
                 case 0:
                     executando = false;
