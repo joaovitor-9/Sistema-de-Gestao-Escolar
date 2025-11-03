@@ -1,5 +1,6 @@
 package Model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,6 @@ public class Aluno extends Pessoa {
 
     public Aluno(String nome, int idade, String cpf, String matricula) {
         super(nome, idade, cpf);
-        
         if (matricula == null || matricula.trim().isEmpty()) {
             throw new IllegalArgumentException("A matrícula é obrigatória.");
         }
