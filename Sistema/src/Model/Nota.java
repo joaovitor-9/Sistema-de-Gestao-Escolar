@@ -1,6 +1,7 @@
 package Model;
 
 public class Nota {
+
     private final Aluno aluno;
     private final Disciplina disciplina;
     private double valorNota;
