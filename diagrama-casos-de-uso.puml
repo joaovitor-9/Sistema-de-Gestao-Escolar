@@ -1,4 +1,5 @@
 @startuml
+
 ' Título do Diagrama
 title Diagrama de Casos de Uso - Sistema de Gestão Escolar
 
@@ -6,46 +7,50 @@ title Diagrama de Casos de Uso - Sistema de Gestão Escolar
 left to right direction
 
 ' Definição dos Atores
-actor Model.Administrador
-actor Model.Professor
-actor Model.Aluno
+actor Administrador
+actor Professor
+actor Aluno
 
-' Delimitação do Sistema com um retângulo
-rectangle "Sistema de Gestão Escolar" {
-  ' Casos de Uso do Model.Administrador
-  (Cadastrar Model.Aluno) as UC1
-  (Cadastrar Model.Professor) as UC2
-  (Criar Disciplina) as UC3
-  (Matricular Model.Aluno em Disciplina) as UC4
+' Delimitação do Sistema
+frame "Sistema de Gestão Escolar" {
 
-  ' Caso de Uso do Model.Professor
-  (Lançar Notas e Faltas) as UC5
-
-  ' Caso de Uso Compartilhado
-  (Consultar Alunos da Disciplina) as UC6
-  (Consultar Notas e Faltas) as UC7
-  (Consultar disciplinas) as UC8
+usecase "Cadastrar Aluno" as UC1
+usecase "Cadastrar Professor" as UC2
+usecase "Criar Disciplina" as UC3
+usecase "Matricular Aluno em Disciplina" as UC4
+usecase "Alocar Professor em Disciplina" as UC5
+usecase "Consultar Alunos" as UC6
+usecase "Consultar Notas" as UC7
+usecase "Consultar Faltas" as UC8
+usecase "Lançar Nota" as UC9
+usecase "Lançar Falta" as UC10
+usecase "Consultar Disciplinas" as UC11
 }
 
-' Relacionamentos do Model.Administrador com os Casos de Uso
-Model.Administrador --> UC1
-Model.Administrador --> UC2
-Model.Administrador --> UC3
-Model.Administrador --> UC4
+' Relacionamentos do Administrador com os Casos de Uso
+Administrador --> UC1
+Administrador --> UC2
+Administrador --> UC3
+Administrador --> UC4
+Administrador --> UC5
 
-' Relacionamento do Model.Professor com os Casos de Uso
-Model.Professor --> UC5
+' Relacionamento do Professor com os Casos de Uso
+Professor --> UC9
+Professor --> UC10
 
 ' Ambos os atores podem realizar a consulta
-Model.Administrador --> UC6
-Model.Professor --> UC6
+Administrador --> UC6
+Professor --> UC6
 
 ' Todos os atores podem realizar a consulta
-Model.Administrador --> UC7
-Model.Professor --> UC7
-UC7 <-- Model.Aluno
+Administrador --> UC7
+Professor --> UC7
+UC7 <-- Aluno
+Administrador --> UC8
+Professor --> UC8
+UC8 <-- Aluno
+Administrador --> UC11
+Professor --> UC11
+UC11 <-- Aluno
 
-' Ambos os atores podem realizar a consulta
-Model.Professor --> UC8
-UC8 <-- Model.Aluno
 @enduml
