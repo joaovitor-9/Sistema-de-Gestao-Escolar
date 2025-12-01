@@ -1,60 +1,166 @@
 @startuml
-' Título do Diagrama
-title Diagrama de Classes - Sistema de Gestão Escolar
 
-' Configurações de aparência
-skinparam classAttributeIconSize 0
-skinparam roundcorner 10
-
-' --- Classes Abstratas ---
-abstract class Model.Pessoa {
-  # nome: String
-  # cpf: String
-  # idade: int
+package "View" {
+class SistemaView {
+- sc : Scanner
++ exibirMensagem(mensagem : String) : void
++ exibirErro(erro : String) : void
++ exibirLista(lista : List<?>) : void
++ solicitarString(prompt : String) : String
++ solicitarInt(prompt : String) : int
++ solicitarDouble(prompt : String) : double
+}
 }
 
-abstract class Model.Funcionario {
-  # id: String
-  # salario: double
+package "Model" {
+abstract class Pessoa {
+- nome : String
+- idade : int
+- cpf : String
++ getNome() : String
++ getIdade() : int
++ getCpf() : String
 }
 
-' --- Classes Concretas ---
-class Model.Aluno {
-  - matricula: String
-  --
-  + consultarNotas(): void
-  + consultarFaltas(): void
-  + consultarDisciplinas(): void
+abstract class Funcionario {
+- id : String
+- salario : double
++ getID() : String
++ getSalario() : double
 }
 
-class Model.Professor {
-  - especialidade: String
-  --
-  + lancarNotas(): void
-  + lancarFaltas(): void
-  + consultarNotas(): void
-  + consultarFaltas(): void
-  + consultarDisciplinas(): void
-  + consultarAlunos(): void
+class Aluno {
+- matricula : String
+- disciplinasMatriculadas : List<Disciplina>
+- notas : List<Nota>
+- faltas : List<Frequencia>
++ getMatricula() : String
++ adicionarDisciplina(d : Disciplina) : void
++ adicionarNota(n : Nota) : void
 }
 
-class Model.Administrador {
-  --
-  + matricularAluno(): void
-  + criarDisciplina(): void
-  + cadastrarProfessor(): void
-  + cadastrarAluno(): void
-  + consultarAlunos(): void
-  + consultarProfessor(): void
-  + consultarNotas(): void
-  + consultarFaltas(): void
+class Professor {
+- especialidade : String
+- disciplinasLecionadas : List<Disciplina>
++ getEspecialidade() : String
++ adicionarDisciplina(d : Disciplina) : void
 }
 
-' --- Relações de Herança ---
-Model.Pessoa <|-- Model.Aluno
-Model.Pessoa <|-- Model.Funcionario
+class Administrador {
++ Administrador(nome: String, cpf: String, idade: int, salario: double)
+}
 
-Model.Funcionario <|-- Model.Professor
-Model.Funcionario <|-- Model.Administrador
+    class Disciplina {
+- nome : String
+- codigo : String
++ getNome() : String
++ getCodigo() : String
+}
+
+class Nota {
+- valorNota : double
++ getValorNota() : double
+}
+
+class Frequencia {
+- data : LocalDate
++ getData() : LocalDate
+}
+
+class RepositorioSistema <<Singleton>> {
+- {static} instanciaUnica : RepositorioSistema
++ {static} getInstancia() : RepositorioSistema
++ adicionarAluno(aluno : Aluno) : void
++ adicionarProfessor(professor : Professor) : void
++ adicionarDisciplina(disciplina : Disciplina) : void
++ salvarNota(nota : Nota) : void
++ salvarFalta(falta : Frequencia) : void
+}
+
+class AdminService {
++ cadastrarAluno(nome: String, idade: int, cpf: String) : Aluno
++ cadastrarProfessor(nome: String, cpf: String, idade: int, sal: double, esp: String) : Professor
++ criarDisciplina(nome: String, codigo: String) : void
++ matricularAlunoEmDisciplina(mat: String, cod: String) : void
++ alocarProfessorEmDisciplina(idProf: String, codDisc: String) : void
++ consultarTodasDisciplinas() : List<Disciplina>
++ consultarAlunosDaDisciplina(cod: String) : List<Aluno>
++ consultarNotasDoAluno(mat: String) : List<Nota>
++ consultarFaltasDoAluno(mat: String) : List<Frequencia>
+}
+
+class AlunoService {
++ validarLogin(matricula: String) : Aluno
++ consultarNotas(matricula: String) : List<Nota>
++ consultarFaltas(matricula: String) : List<Frequencia>
++ consultarDisciplinasMatriculadas(matricula: String) : List<Disciplina>
+}
+
+class ProfessorService {
++ validarLogin(idProfessor: String) : Professor
++ lancarNota(idProf: String, matAluno: String, codDisc: String, nota: double) : void
++ lancarFalta(idProf: String, matAluno: String, codDisc: String) : void
++ consultarAlunosDaDisciplina(codDisc: String) : List<Aluno>
++ consultarDisciplinasDoProfessor(idProf: String) : List<Disciplina>
++ consultarNotasDaDisciplina(idProf: String, codDisc: String) : List<Nota>
++ consultarFaltasDaDisciplina(idProf: String, codDisc: String) : List<Frequencia>
+}
+}
+
+package "Controller" {
+class AdminController {
++ iniciarCadastroAluno() : void
++ iniciarCadastroProfessor() : void
++ iniciarCriacaoDisciplina() : void
++ iniciarMatriculaAluno() : void
+}
+    
+class ProfessorController {
+- idProfessorLogado : String
++ fazerLogin() : boolean
++ iniciarLancamentoNota() : void
++ iniciarLancamentoFalta() : void
+}
+
+class AlunoController {
+- matriculaAlunoLogado : String
++ fazerLogin() : boolean
++ iniciarConsultaNotas() : void
+    }
+}
+
+class Main {
++ {static} main(args : String[]) : void
+}
+
+' Relacionamentos
+Pessoa <|-- Funcionario
+Pessoa <|-- Aluno
+Funcionario <|-- Professor
+Funcionario <|-- Administrador
+
+Nota --> Aluno
+Nota --> Disciplina
+Frequencia --> Aluno
+Frequencia --> Disciplina
+
+Aluno -- Disciplina
+Professor -- Disciplina
+
+AdminController --> AdminService
+AdminController --> SistemaView
+ProfessorController --> ProfessorService
+ProfessorController --> SistemaView
+AlunoController --> AlunoService
+AlunoController --> SistemaView
+
+AdminService --> RepositorioSistema
+ProfessorService --> RepositorioSistema
+AlunoService --> RepositorioSistema
+
+Main ..> AdminController
+Main ..> ProfessorController
+Main ..> AlunoController
+Main ..> SistemaView
 
 @enduml
