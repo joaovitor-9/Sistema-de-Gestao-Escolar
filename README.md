@@ -10,23 +10,23 @@ O projeto foi construído utilizando a arquitetura **MVC (Model-View-Controller)
 * **Padrão de Projeto:** Singleton (no Repositório)
 * **Modelagem:** PlantUML
   
-## Funcionalidades
+### Funcionalidades
 O sistema possui três níveis de acesso (Atores), cada um com permissões específicas:
 
-### Administrador
+## Administrador
 - Cadastrar novos Alunos e Professores.
 - Criar novas Disciplinas.
 - Matricular alunos em disciplinas.
 - Alocar professores em disciplinas.
 - Consultar dados gerais (todas as disciplinas, notas e faltas de qualquer aluno).
 
-### Professor
+## Professor
 - Visualizar as disciplinas que leciona.
 - Consultar lista de alunos matriculados em suas disciplinas.
 - **Lançar Notas** para os alunos.
 - **Lançar Faltas** (Frequência).
 
-### Aluno
+## Aluno
 - Consultar boletim (Minhas Notas).
 - Consultar histórico de frequência (Minhas Faltas).
 - Visualizar grade de disciplinas matriculadas.
