@@ -1,0 +1,66 @@
+
+Table Aluno {
+  matricula varchar [pk] 
+  nome varchar
+  idade int
+  cpf varchar [unique]
+}
+
+Table Disciplina {
+  codigo varchar [pk]
+  nome varchar
+}
+
+Table Professor {
+  id_professor varchar [pk]
+  nome varchar
+  cpf varchar [unique]
+  salario decimal
+  especialidade varchar
+}
+
+
+
+Table Matricula {
+  id int [pk, increment]
+  fk_aluno_matricula varchar
+  fk_disciplina_codigo varchar
+  data_matricula date
+}
+
+
+Table Professor_Disciplina {
+  id int [pk, increment]
+  fk_professor_id varchar
+  fk_disciplina_codigo varchar
+}
+
+
+Table Nota {
+  id int [pk, increment]
+  valor decimal
+  fk_aluno_matricula varchar
+  fk_disciplina_codigo varchar
+}
+
+
+Table Frequencia {
+  id int [pk, increment]
+  data_falta date
+  fk_aluno_matricula varchar
+  fk_disciplina_codigo varchar
+}
+
+
+
+Ref: Matricula.fk_aluno_matricula > Aluno.matricula
+Ref: Matricula.fk_disciplina_codigo > Disciplina.codigo
+
+Ref: Professor_Disciplina.fk_professor_id > Professor.id_professor
+Ref: Professor_Disciplina.fk_disciplina_codigo > Disciplina.codigo
+
+Ref: Nota.fk_aluno_matricula > Aluno.matricula
+Ref: Nota.fk_disciplina_codigo > Disciplina.codigo
+
+Ref: Frequencia.fk_aluno_matricula > Aluno.matricula
+Ref: Frequencia.fk_disciplina_codigo > Disciplina.codigo
